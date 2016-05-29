@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!doctype html>
 <html>
 	<head>
@@ -6,8 +7,12 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/header-style.css">
 		<link rel="stylesheet" type="text/css" href="stylesheets/main-page-style.css">
 		<link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+		<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+		<link rel="stylesheet" href="{% static 'css/main-page-style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/header-style.css' %}">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 	</head>
 	<body>
 		<header>
@@ -22,7 +27,7 @@
 		<main>
 		    <div class="logo">
                 <a href="index.html">
-                    <img width="442" height="235" src="images/mapich.png" alt="logo">
+                    <img width="442" height="235" src="{% static 'images/mapich.png' %}" alt="logo">
                 </a>
 			</div>
             <input id="search" type="text" autofocus>
