@@ -1,0 +1,56 @@
+/* Style of site's main part */
+
+main {
+    min-height: 884px;
+    background: linear-gradient(to bottom, #3288ed, #78c6ff);
+    padding-top: 60px;
+}
+
+.logo {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 150px;
+    width: 442px;
+    height: 235px;
+}
+
+.logo a {
+    display: block;
+}
+
+#search {
+    display: block;
+    margin: 0 auto;
+    width: 500px;
+    height: 30px;
+    font-size: 20px;
+    border-color: aliceblue;
+    transition: 0.2s ease-in-out;
+}
+
+#search:hover {
+    border-color: #989898;
+    transition: 0.2s ease-in-out;
+}
+
+#button-search {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    font-family: 'Raleway', serif;
+    background: #3288ed;
+    border: 1px solid;
+    border-color: #3288ed;
+    color: rgba(255, 255, 255, 0.59);
+}
+
+#button-search:hover {
+    background: #1f6cc7;
+    border-color: #1f6cc7;
+    color: rgb(255, 255, 255);
+    transition: 0.2s ease-in-out;
+}

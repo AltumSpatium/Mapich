@@ -1,0 +1,41 @@
+/* Style of site's header */
+
+header {
+    min-width: 1500px;
+    background: None;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+}
+
+.navigation {
+    float: left;
+    height: 60px;
+    font-size: 17px;
+    font-family: 'Raleway';
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.navigation ul li {
+    float: left;
+    position: relative;
+    height: 60px;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+}
+
+.navigation ul li a:hover {
+    background: #3177c9;
+    transition: 0.2s ease-in-out;
+}
