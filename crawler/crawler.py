@@ -37,18 +37,34 @@ class Crawler:
                 # time.sleep(1)
             self.depth_links.append(current_links)
 
+
     def get_site(self, link):
         links = []
         start_page = requests.get(link)
         soup = BeautifulSoup(start_page.text, 'lxml')
         text = filter(visible, soup.findAll(text=True))
+        self.get_words(text)
+        # indexing_texts(text,link)
+        print text
         for tag in soup.find_all('a', href=True):
             new_link = urlparse.urljoin(link, tag['href'])
             if new_link not in self.visited:
                 links.append(new_link)
                 self.visited.add(new_link)
-        print links
+        # print links
+        # print self.visited
         return Site(text, links)
+
+    def get_words(self, texts):
+        words = []
+        pattern = re.compile('[\W_]+')
+        for t in texts:
+            t = t.lower()
+            t = pattern.sub(' ', t)
+            re.sub(r'[\W_]+','', t)
+            words.extend(t.split())
+        print words
+
 
 
 class Site(object):
@@ -60,5 +76,5 @@ class Site(object):
 
 
 c = Crawler(
-    'http://www.apple.com/itunes/download', 1)
+    'http://vitals.lifehacker.com/what-s-the-difference-between-all-these-running-apps-1779631255', 0)
 c.crawl()
