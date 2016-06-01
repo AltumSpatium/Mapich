@@ -31,7 +31,11 @@
 			    <input id="button-search" type="button" value="Search">
             </div>
 			{% for result in results %}
-				{{ result }}
+				<div class="search-result">
+				    <h3><a href="{{ result.site_link }}">Title: {{ result.site_title }}</a></h3>
+				    <p>Link: {{ result.site_link }}</p>
+				    <p>Text: {{ result.founded_text }}</p>
+				</div>
 			{% endfor %}
 		</main>
 	</body>
