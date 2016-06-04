@@ -1,0 +1,7 @@
+/* Style of site's main part */
+
+main {
+    min-height: 908px;
+    background: linear-gradient(to bottom, #3288ed, #78c6ff);
+    padding-top: 60px;
+}

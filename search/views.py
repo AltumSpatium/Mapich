@@ -8,5 +8,8 @@ def results(request):
 	results = SearchResult.objects.all()
 	return render(request, 'results.html', {'results': results})
 
+def urls(request):
+	return render(request, 'urls.html', {})
+
 def settings(request):
 	return render(request, 'settings.html', {})
