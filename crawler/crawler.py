@@ -6,6 +6,7 @@ import urlparse
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 import robotparser
+import database as db
 
 cached_stopwords = set(stopwords.words('english'))
 
@@ -71,7 +72,7 @@ class Crawler:
                 print self.index
                 # time.sleep(1)
             self.depth_links.append(current_links)
-        print self.invert_index(self.index)
+        db.add_inverted_index(self.invert_index(self.index))
 
     def invert_index(self, index):
         inverted_index = {}
@@ -120,6 +121,6 @@ class Site(object):
                 word_index[word] = [index]
         return word_index
 
-c = Crawler(
-    'https://pymotw.com/2/robotparser/', 1)
-c.crawl()
+# c = Crawler(
+#     'https://pymotw.com/2/robotparser/', 0)
+# c.crawl()
