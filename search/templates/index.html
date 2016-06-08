@@ -28,7 +28,13 @@
                 </a>
 			</div>
             <input id="search" type="text" autofocus>
-			<input id="button-search" type="button" value="Search on Mapich" onclick="location.href='results.html'">
+			<input id="button-search" type="button" value="Search on Mapich" onclick="return search(event)">
 		</main>
+		<script type="text/javascript">
+			function search(e) {
+				var query = document.getElementById("search").value;
+				window.location = "http://127.0.0.1:8000/results.html?request=" + query;
+			}
+		</script>
 	</body>
 </html>

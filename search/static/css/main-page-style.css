@@ -1,7 +1,18 @@
 /* Style of site's main part */
 
+@media screen and (max-device-height: 1080px) {
+    main {
+        height: 908px;
+    }
+}
+
+@media screen and (max-device-height: 1600px) {
+    main {
+        height: 1428px;
+    }
+}
+
 main {
-    min-height: 908px;
     background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
 }
