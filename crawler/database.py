@@ -23,6 +23,15 @@ def check_visited(url):
             "SELECT rowid FROM Indexes WHERE url = '{}'".format(url))
         return bool(cur.fetchone())
 
+
+def get_urls(url):
+    con = lite.connect('index.db')
+    with con:
+        cur = con.cursor()
+        cur.execute(
+            "SELECT url FROM Indexes")
+        return cur.fetchall()
+
 def add_inverted_index(inverted_index):
     con = lite.connect('inverted_index.db')
     with con:
