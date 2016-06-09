@@ -37,7 +37,7 @@ def word_query(word):
 
 def free_query(query):
     res = []
-    query = db.get_word_data(query)
+    query = get_words(query)
     for word in query:
         res += word_query(word)
     print res
