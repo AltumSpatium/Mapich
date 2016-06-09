@@ -27,7 +27,6 @@ class Crawler:
         self.starting_url = starting_url
         self.depth = depth
         self.depth_links = []
-        self.sites = []
         self.visited = set()
         self.index = {}
         self.inverted_index = {}
@@ -52,27 +51,30 @@ class Crawler:
         parser = self.parsing_robots(link)
         for tag in soup.find_all('a', href=True):
             new_link = urlparse.urljoin(link, tag['href'])
-            if new_link not in self.visited and parser.can_fetch('*', new_link):
+            if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):
                 links.append(new_link)
                 self.visited.add(new_link)
         return Site(link, text, links)
 
     def crawl(self):
         site = self.get_site(self.starting_url)
-        self.sites.append(site)  # maybe we don't need to save our sites
-        self.index[site.name] = site.index()
+        if not db.check_visited(site.name):
+            self.index[site.name] = site.index()
         self.depth_links.append(site.links)
         for current_depth in xrange(self.depth):
+            print self.index
             current_links = []
             for link in self.depth_links[current_depth]:
                 current_site = self.get_site(link)
                 current_links.extend(current_site.links)
-                self.sites.append(current_site)
                 self.index[current_site.name] = current_site.index()
-                print self.index
                 # time.sleep(1)
             self.depth_links.append(current_links)
-        db.add_inverted_index(self.invert_index(self.index))
+        print self.index
+        print self.invert_index(self.index)
+        if self.index:
+            db.add_inverted_index(self.invert_index(self.index))
+            db.add_index(self.index)
 
     def invert_index(self, index):
         inverted_index = {}
@@ -121,6 +123,6 @@ class Site(object):
                 word_index[word] = [index]
         return word_index
 
-# c = Crawler(
-#     'https://pymotw.com/2/robotparser/', 0)
-# c.crawl()
+c = Crawler(
+    'https://pymotw.com/2/robotparser/', 0)
+c.crawl()

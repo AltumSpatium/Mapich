@@ -2,16 +2,34 @@ import sqlite3 as lite
 import sys
 
 
-con = lite.connect('index.db')
+def add_index(index):
+    con = lite.connect('index.db')
+    with con:
+        cur = con.cursor()
+        cur.execute(
+            "CREATE TABLE IF NOT EXISTS Indexes(Url TEXT, Positions TEXT)")
+        for url in index.keys():
+            cur.execute(
+                "INSERT INTO Indexes VALUES(?,?)", (url, str(index[url])))
 
+
+def check_visited(url):
+    con = lite.connect('index.db')
+    with con:
+        cur = con.cursor()
+        cur.execute(
+            "CREATE TABLE IF NOT EXISTS Indexes(Url TEXT, Positions TEXT)")
+        cur.execute(
+            "SELECT rowid FROM Indexes WHERE url = '{}'".format(url))
+        return bool(cur.fetchone())
 
 def add_inverted_index(inverted_index):
+    con = lite.connect('inverted_index.db')
     with con:
+        cur = con.cursor()
         for word in inverted_index.keys():
             word_to_add = '_' + word
             l = []
-            cur = con.cursor()
-            cur.execute("DROP TABLE IF EXISTS Cars")
             cur.execute(
                 "CREATE TABLE IF NOT EXISTS {}(Url TEXT, Positions TEXT)".format(word_to_add))
             for url, pos in inverted_index[word].items():
@@ -21,6 +39,7 @@ def add_inverted_index(inverted_index):
 
 
 def get_word_data(word):
+    con = lite.connect('inverted_index.db')
     with con:
         word_to_get = '_' + word
         cur = con.cursor()
