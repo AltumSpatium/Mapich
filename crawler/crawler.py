@@ -30,6 +30,7 @@ class Crawler:
         self.visited = set()
         self.index = {}
         self.inverted_index = {}
+        self.titles = {}
 
     def get_domain(self, link):
         parsed_url = urlparse.urlparse(link)
@@ -49,18 +50,20 @@ class Crawler:
         soup = BeautifulSoup(start_page.text, 'lxml')
         text = filter(visible, soup.findAll(text=True))
         parser = self.parsing_robots(link)
+        print soup.title.string
         for tag in soup.find_all('a', href=True):
             new_link = urlparse.urljoin(link, tag['href'])
             if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):
                 links.append(new_link)
                 self.visited.add(new_link)
-        return Site(link, text, links)
+        return Site(link, text, links, soup.title.string)
 
     def crawl(self):
         site = self.get_site(self.starting_url)
         if not db.check_visited(site.name):
             self.index[site.name] = site.index()
         self.depth_links.append(site.links)
+        self.titles[site.name] = site.title
         for current_depth in xrange(self.depth):
             print self.index
             current_links = []
@@ -68,13 +71,14 @@ class Crawler:
                 current_site = self.get_site(link)
                 current_links.extend(current_site.links)
                 self.index[current_site.name] = current_site.index()
+                self.titles[current_site.name] = current_site.title
                 # time.sleep(1)
             self.depth_links.append(current_links)
         print self.index
         print self.invert_index(self.index)
         if self.index:
             db.add_inverted_index(self.invert_index(self.index))
-            db.add_index(self.index)
+            db.add_index(self.index, self.titles)
 
     def invert_index(self, index):
         inverted_index = {}
@@ -95,10 +99,11 @@ class Crawler:
 class Site(object):
     """docstring for Site"""
 
-    def __init__(self, name, text, links):
+    def __init__(self, name, text, links, title):
         self.name = name
         self.text = text
         self.links = links
+        self.title = title
 
     def get_words(self):
         stemmer = PorterStemmer()
