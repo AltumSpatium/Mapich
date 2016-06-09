@@ -50,7 +50,6 @@ class Crawler:
         soup = BeautifulSoup(start_page.text, 'lxml')
         text = filter(visible, soup.findAll(text=True))
         parser = self.parsing_robots(link)
-        print soup.title.string
         for tag in soup.find_all('a', href=True):
             new_link = urlparse.urljoin(link, tag['href'])
             if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):

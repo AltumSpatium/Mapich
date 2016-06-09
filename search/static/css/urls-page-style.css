@@ -1,7 +1,46 @@
 /* Style of site's main part */
 
+@media screen and (max-height: 1600px) {
+    main {
+        height: 1428px;
+    }
+}
+
+@media screen and (max-height: 1080px) {
+    main {
+        height: 884px;
+    }
+}
+
 main {
-    min-height: 908px;
     background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
+}
+
+hr {
+	margin-top: 10px;
+}
+
+.url {
+	margin-top: 20px;
+	margin-left: 40px;
+}
+
+.url ol {
+	list-style-type: decimal;
+	list-style-position: outside;
+	color: #fff;
+	font-size: 22px;
+	font-family: 'Raleway', serif;
+}
+
+.url ol li a {
+	font-size: 22px;
+	font-family: 'Raleway', serif;
+	text-decoration: none;
+	color: #fff;
+}
+
+.url ol li a:hover {
+	color: #d1d1d1;
 }

@@ -2,10 +2,10 @@
 <!doctype html>
 <html>
 	<head>
-		<title>{{ query }} - Search on Mapich</title>
+		<title>Mapich</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/reset.css' %}">
-		<link rel="stylesheet" href="{% static 'css/results-page-style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/main-page-style.css' %}">
 		<link rel="stylesheet" href="{% static 'css/header-style.css' %}">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -23,23 +23,13 @@
 			</nav>
 		</header>
 		<main>
-            <div class="search-panel">
-		        <div class="logo">
-                    <a href="base.html">
-                        <img width="110" height="58" src="{% static 'images/mapich.png' %}" alt="logo">
-                    </a>
-			    </div>
-                <input id="search" type="text" value="{{ query }}">
-			    <input id="button-search" type="button" value="Search" onclick="return search(event)">
-            </div>
-			{% for result in results %}
-				<div class="search-result">
-				    <h3><a href="{{ result.site_link }}">{{ result.site_title }}</a></h3>
-				    <p>{{ result.site_link }}</p>
-				</div>
-			{% empty %}
-				<p id="not-found">Nothing found for "{{ query }}"...</p>
-			{% endfor %}
+		    <div class="logo">
+                <a href="base.html">
+                    <img width="442" height="235" src="{% static 'images/mapich.png' %}" alt="logo">
+                </a>
+			</div>
+            <input id="search" type="text" autofocus>
+			<input id="button-search" type="button" value="Search on Mapich" onclick="return search(event)">
 		</main>
 		<script type="text/javascript">
 			function search(e) {

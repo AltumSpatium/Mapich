@@ -2,10 +2,10 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Mapich</title>
+		<title>Add to index - Mapich</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/reset.css' %}">
-		<link rel="stylesheet" href="{% static 'css/main-page-style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/index-page-style.css' %}">
 		<link rel="stylesheet" href="{% static 'css/header-style.css' %}">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -15,25 +15,22 @@
 			<!-- Navigation panel -->
 			<nav class="navigation">
 				<ul>
-					<li><a href="index.html">Search</a></li>
+					<li><a href="base.html">Search</a></li>
 					<li><a href="urls.html">Urls</a></li>
 					<li><a href="settings.html">Settings</a></li>
+					<li><a href="index.html">Add to index</a></li>
 				</ul>
 			</nav>
 		</header>
 		<main>
-		    <div class="logo">
-                <a href="index.html">
-                    <img width="442" height="235" src="{% static 'images/mapich.png' %}" alt="logo">
-                </a>
-			</div>
-            <input id="search" type="text" autofocus>
-			<input id="button-search" type="button" value="Search on Mapich" onclick="return search(event)">
+			<p id="par">Enter url:</p>
+            <input id="index" type="text" autofocus>
+			<input id="button-index" type="button" value="Add" onclick="return index(event)">
 		</main>
 		<script type="text/javascript">
-			function search(e) {
-				var query = document.getElementById("search").value;
-				window.location = "http://127.0.0.1:8000/results.html?request=" + query;
+			function index(e) {
+				var ind_url = document.getElementById("index").value;
+				window.location = "http://127.0.0.1:8000/index.html?request=" + ind_url;
 			}
 		</script>
 	</body>

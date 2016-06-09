@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Settings - Mapich</title>
+		<title>Urls - Mapich</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/reset.css' %}">
 		<link rel="stylesheet" href="{% static 'css/urls-page-style.css' %}">
@@ -15,13 +15,24 @@
 			<!-- Navigation panel -->
 			<nav class="navigation">
 				<ul>
-					<li><a href="index.html">Search</a></li>
+					<li><a href="base.html">Search</a></li>
 					<li><a href="urls.html">Urls</a></li>
 					<li><a href="settings.html">Settings</a></li>
+					<li><a href="index.html">Add to index</a></li>
 				</ul>
 			</nav>
 		</header>
 		<main>
+			<hr>
+			{% for url in urls %}
+				<div class="url">
+					<ol>
+						<li><a href="{{ url }}">{{ url }}</a></li>
+					</ol>
+				</div>
+			{% empty %}
+				<p id="not-found">No urls indexed.</p>
+			{% endfor %}
 		</main>
 	</body>
 </html>

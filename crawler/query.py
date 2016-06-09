@@ -25,8 +25,8 @@ def simple_ranked_results(urls):
             urls_freq[url] = len(pos)
     urls_freq = urls_freq.items()
     res = sorted(urls_freq, key = lambda x : x[-1], reverse = True)
-    return res 
-s
+    return res
+
 
 def word_query(word):
     data = db.get_word_data(word)

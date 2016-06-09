@@ -1,8 +1,19 @@
 /* Style of site's main part */
 
+@media screen and (max-height: 1600px) {
+    main {
+        height: 1428px;
+    }
+}
+
+@media screen and (max-height: 1080px) {
+    main {
+        height: 884px;
+    }
+}
+
 main {
     background: linear-gradient(to bottom, #3288ed, #78c6ff);
-    min-height: 908px;
     padding-top: 60px;
 }
 
@@ -52,19 +63,14 @@ main {
     height: 36px;
     font-size: 16px;
     font-family: 'Raleway', serif;
-    /*background: #7c2fd4;*/
     background: #1d74db;
     border: 1px solid;
-    /*border-color: #7c2fd4;*/
     border-color: #1d74db;
-    /*color: rgb(255, 255, 255);*/
     color: rgba(255, 255, 255, 0.59);
 }
 
 #button-search:hover {
-    /*background: #5910ad;*/
     background: #1563bf;
-    /*border-color: #5910ad;*/
     border-color: #1563bf;
     color: rgb(255, 255, 255);
     transition: 0.2s ease-in-out;
@@ -98,4 +104,11 @@ main {
 .search-result h3 a:visited {
     text-decoration: underline;
     color: #d0d0d0;
+}
+
+#not-found {
+    font-size: 18px;
+    font-family: 'Raleway', serif;
+    margin-left: 130px;
+    color: #fff;
 }

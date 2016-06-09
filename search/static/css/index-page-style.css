@@ -17,51 +17,49 @@ main {
     padding-top: 60px;
 }
 
-.logo {
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-    margin-top: 150px;
-    width: 442px;
-    height: 235px;
+#par {
+	color: #fff;
+	font-size: 22px;
+	font-family: 'Raleway', serif;
+	margin-top: 20px;
+	margin-left: 20px;
 }
 
-.logo a {
+#index {
+    float: left;
     display: block;
-}
-
-#search {
-    display: block;
-    margin: 0 auto;
+    margin-top: 14px;
+    margin-left: 20px;
     width: 500px;
-    height: 30px;
-    font-size: 20px;
+    height: 25px;
+    font-size: 15px;
     border-color: aliceblue;
-    transition: 0.2s ease-in-out;
 }
 
-#search:hover {
+#index:hover {
     border-color: #989898;
     transition: 0.2s ease-in-out;
 }
 
-#button-search {
+#button-index {
+    float: left;
     display: block;
-    margin: 0 auto;
-    margin-top: 10px;
-    width: 150px;
-    height: 40px;
+    margin-top: 14px;
+    margin-left: 10px;
+    width: 50px;
+    height: 31px;
     font-size: 16px;
     font-family: 'Raleway', serif;
-    background: #3288ed;
+    background: #1d74db;
     border: 1px solid;
-    border-color: #3288ed;
+    border-color: #1d74db;
+    border-radius: 1px;
     color: rgba(255, 255, 255, 0.59);
 }
 
-#button-search:hover {
-    background: #1f6cc7;
-    border-color: #1f6cc7;
+#button-index:hover {
+    background: #1563bf;
+    border-color: #1563bf;
     color: rgb(255, 255, 255);
     transition: 0.2s ease-in-out;
 }
