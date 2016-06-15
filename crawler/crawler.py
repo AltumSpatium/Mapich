@@ -55,7 +55,11 @@ class Crawler:
             if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):
                 links.append(new_link)
                 self.visited.add(new_link)
-        return Site(link, text, links, soup.title.string)
+        try:
+            title = soup.title.string
+        except:
+            title = 'Standard title'
+        return Site(link, text, links, title)
 
     def crawl(self):
         site = self.get_site(self.starting_url)
@@ -64,7 +68,6 @@ class Crawler:
         self.depth_links.append(site.links)
         self.titles[site.name] = site.title
         for current_depth in xrange(self.depth):
-            print self.index
             current_links = []
             for link in self.depth_links[current_depth]:
                 current_site = self.get_site(link)
@@ -73,8 +76,6 @@ class Crawler:
                 self.titles[current_site.name] = current_site.title
                 # time.sleep(1)
             self.depth_links.append(current_links)
-        print self.index
-        print self.invert_index(self.index)
         if self.index:
             db.add_inverted_index(self.invert_index(self.index))
             db.add_index(self.index, self.titles)
@@ -126,7 +127,4 @@ class Site(object):
             except:
                 word_index[word] = [index]
         return word_index
-
-c = Crawler(
-    'https://pymotw.com/2/robotparser/', 0)
-c.crawl()
+        

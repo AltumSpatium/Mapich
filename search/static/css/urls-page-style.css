@@ -1,6 +1,6 @@
 /* Style of site's main part */
 
-@media screen and (max-height: 1600px) {
+/*@media screen and (max-height: 1600px) {
     main {
         height: 1428px;
     }
@@ -12,6 +12,12 @@
     }
 }
 
+@media screen and (max-height: 768px) {
+    main {
+        height: 572px;
+    }
+}*/
+
 main {
     background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
@@ -22,12 +28,12 @@ hr {
 }
 
 .url {
-	margin-top: 20px;
 	margin-left: 40px;
+	padding-bottom: 15px;
 }
 
 .url ol {
-	list-style-type: decimal;
+	list-style-type: circle;
 	list-style-position: outside;
 	color: #fff;
 	font-size: 22px;

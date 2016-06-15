@@ -29,8 +29,9 @@ def get_urls():
     with con:
         cur = con.cursor()
         cur.execute(
-            "SELECT Url, Title  FROM Indexes")
+            "SELECT Url, Title FROM Indexes")
         return cur.fetchall()
+
 
 def add_inverted_index(inverted_index):
     con = lite.connect('inverted_index.db')

@@ -1,6 +1,6 @@
 /* Style of site's main part */
 
-@media screen and (max-height: 1600px) {
+/*@media screen and (max-height: 1600px) {
     main {
         height: 1428px;
     }
@@ -11,6 +11,12 @@
         height: 884px;
     }
 }
+
+@media screen and (max-height: 768px) {
+    main {
+        height: 572px;
+    }
+}*/
 
 main {
     background: linear-gradient(to bottom, #3288ed, #78c6ff);
@@ -79,7 +85,7 @@ main {
 .search-result {
     font-family: 'Raleway', serif;
     margin-left: 130px;
-    margin-bottom: 35px;
+    padding-bottom: 30px;
 }
 
 .search-result p {
@@ -111,4 +117,5 @@ main {
     font-family: 'Raleway', serif;
     margin-left: 130px;
     color: #fff;
+    padding-bottom: 460px;
 }

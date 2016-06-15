@@ -12,6 +12,12 @@
     }
 }
 
+@media screen and (max-height: 768px) {
+    main {
+        height: 572px;
+    }
+}
+
 main {
     background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;

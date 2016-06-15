@@ -2,13 +2,7 @@
 
 @media screen and (max-height: 1600px) {
     main {
-        height: 1428px;
-    }
-}
-
-@media screen and (max-height: 1080px) {
-    main {
-        height: 884px;
+        height: 642px;
     }
 }
 
