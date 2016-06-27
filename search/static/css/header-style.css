@@ -1,4 +1,21 @@
-/* Style of site's header */
+/*
+=============================================
+        Common pages' background style
+=============================================
+*/
+
+body {
+    height: 100vh;
+    background: linear-gradient(to bottom, #3288ed, #78c6ff);
+    background-attachment: fixed;
+    overflow: auto;
+}
+
+/*
+=============================================
+        Page's header style
+=============================================
+*/
 
 header {
     min-width: 1500px;
@@ -8,6 +25,12 @@ header {
     position: fixed;
     z-index: 99;
 }
+
+/*
+=============================================
+        Navigation panel style
+=============================================
+*/
 
 .navigation {
     float: left;

@@ -1,34 +1,29 @@
-/* Style of site's main part */
+/*
+=============================================
+        Change of style for header
+=============================================
+*/
 
-/*@media screen and (max-height: 1600px) {
-    main {
-        height: 1428px;
-    }
+header {
+    background: rgba(50, 136, 237, 0.78);
+    box-shadow: 0 0 3px #000000;
 }
 
-@media screen and (max-height: 1080px) {
-    main {
-        height: 884px;
-    }
-}
-
-@media screen and (max-height: 768px) {
-    main {
-        height: 572px;
-    }
-}*/
+/*
+=============================================
+        Page's main part style
+=============================================
+*/
 
 main {
-    background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
 }
 
-.search-panel {
-    background: #2a5e9d;
-    width: 100%;
-    height: 64px;
-    margin-bottom: 30px;
-}
+/*
+=============================================
+        Logo style
+=============================================
+*/
 
 .logo {
     text-align: center;
@@ -43,6 +38,25 @@ main {
 .logo a {
     display: block;
 }
+
+/*
+=============================================
+        Searching panel style
+=============================================
+*/
+
+.search-panel {
+    background: #2a5e9d;
+    width: 100%;
+    height: 64px;
+    margin-bottom: 30px;
+}
+
+/*
+=============================================
+        Searching text-input style
+=============================================
+*/
 
 #search {
     float: left;
@@ -59,6 +73,12 @@ main {
     border-color: #989898;
     transition: 0.2s ease-in-out;
 }
+
+/*
+=============================================
+        Searching button style
+=============================================
+*/
 
 #button-search {
     float: left;
@@ -81,6 +101,12 @@ main {
     color: rgb(255, 255, 255);
     transition: 0.2s ease-in-out;
 }
+
+/*
+=============================================
+        Search result block style
+=============================================
+*/
 
 .search-result {
     font-family: 'Raleway', serif;
@@ -112,10 +138,15 @@ main {
     color: #d0d0d0;
 }
 
+/*
+=============================================
+        "Not found" paragraph style
+=============================================
+*/
+
 #not-found {
     font-size: 18px;
     font-family: 'Raleway', serif;
     margin-left: 130px;
     color: #fff;
-    padding-bottom: 460px;
 }

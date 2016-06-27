@@ -1,6 +1,7 @@
 from django.shortcuts import render, render_to_response
 from models import SearchResult
 from crawler import query as q, database, crawler
+import json
 
 
 def base(request):
@@ -21,7 +22,12 @@ def results(request):
             title = urls[link[0]]
         results.append(SearchResult(site_title=title,
                                     site_link=link[0]))
-    return render(request, 'results.html', {'results': results, 'query': requested_query})
+    full_query = cut_query = requested_query
+    if len(cut_query) > 70:
+        cut_query = requested_query[:71] + "..."
+    return render(request, 'results.html', {'results': results,
+                                            'full_query': full_query,
+                                            'cut_query': cut_query})
 
 
 def urls(request):
@@ -30,15 +36,26 @@ def urls(request):
 
 
 def settings(request):
-    return render(request, 'settings.html', {})
+    settings = {}
+    new_settings = request.GET.get('settings', None)
+    if new_settings:
+        new_settings = new_settings.split(',')
+        for setting in new_settings:
+            setting = setting.split(':')
+            settings[setting[0]] = setting[1]
+        with open('search/static/settings/settings.json', 'w') as f:
+            f.write(json.dumps(settings))
+    else:
+        with open('search/static/settings/settings.json', 'r') as f:
+            settings = json.loads(f.read())
+    return render(request, 'settings.html', {'depth': settings.get("depth")})
 
 
 def index(request):
-    try:
-        indexed_url = request.GET['request']
-        if indexed_url:
-            c = crawler.Crawler(indexed_url, 0)  # Add setting to change depth
-            c.crawl()
-    except:
-        pass
+    indexed_url = request.GET.get('request', None)
+    if indexed_url:
+        with open('search/static/settings/settings.json', 'r') as f:
+            depth = int(json.loads(f.read()).get("depth"))
+        c = crawler.Crawler(indexed_url, depth)
+        c.crawl()
     return render(request, 'index.html', {})

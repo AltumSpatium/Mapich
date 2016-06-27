@@ -1,27 +1,18 @@
-/* Style of site's main part */
-
-@media screen and (max-height: 1600px) {
-    main {
-        height: 1428px;
-    }
-}
-
-@media screen and (max-height: 1080px) {
-    main {
-        height: 884px;
-    }
-}
-
-@media screen and (max-height: 768px) {
-    main {
-        height: 572px;
-    }
-}
+/*
+=============================================
+        Page's main part style
+=============================================
+*/
 
 main {
-    background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
 }
+
+/*
+=============================================
+        Searching paragraph style
+=============================================
+*/
 
 #par {
 	color: #fff;
@@ -30,6 +21,12 @@ main {
 	margin-top: 20px;
 	margin-left: 20px;
 }
+
+/*
+=============================================
+        Indexing text-input style
+=============================================
+*/
 
 #index {
     float: left;
@@ -46,6 +43,12 @@ main {
     border-color: #989898;
     transition: 0.2s ease-in-out;
 }
+
+/*
+=============================================
+        Indexing button style
+=============================================
+*/
 
 #button-index {
     float: left;

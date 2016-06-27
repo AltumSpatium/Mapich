@@ -1,25 +1,21 @@
-/* Style of site's main part */
+/*
+=============================================
+        Change of style for header
+=============================================
+*/
 
-/*@media screen and (max-height: 1600px) {
-    main {
-        height: 1428px;
-    }
+header {
+    background: rgba(50, 136, 237, 0.78);
+    box-shadow: 0 0 3px #000000;
 }
 
-@media screen and (max-height: 1080px) {
-    main {
-        height: 884px;
-    }
-}
-
-@media screen and (max-height: 768px) {
-    main {
-        height: 572px;
-    }
-}*/
+/*
+=============================================
+        Page's main part style
+=============================================
+*/
 
 main {
-    background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
 }
 
@@ -27,24 +23,30 @@ hr {
 	margin-top: 10px;
 }
 
+/*
+=============================================
+        List of URLs style
+=============================================
+*/
+
 .url {
 	margin-left: 40px;
 	padding-bottom: 15px;
 }
 
 .url ol {
+    font-size: 22px;
+	font-family: 'Raleway', serif;
+    color: #fff;
 	list-style-type: circle;
 	list-style-position: outside;
-	color: #fff;
-	font-size: 22px;
-	font-family: 'Raleway', serif;
 }
 
 .url ol li a {
 	font-size: 22px;
+    color: #fff;
 	font-family: 'Raleway', serif;
 	text-decoration: none;
-	color: #fff;
 }
 
 .url ol li a:hover {

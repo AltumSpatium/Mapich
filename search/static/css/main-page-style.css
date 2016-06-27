@@ -1,15 +1,18 @@
-/* Style of site's main part */
-
-@media screen and (max-height: 1600px) {
-    main {
-        height: 642px;
-    }
-}
+/*
+=============================================
+        Page's main part style
+=============================================
+*/
 
 main {
-    background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
 }
+
+/*
+=============================================
+        Logo style
+=============================================
+*/
 
 .logo {
     text-align: center;
@@ -23,6 +26,12 @@ main {
 .logo a {
     display: block;
 }
+
+/*
+=============================================
+        Searching text-input style
+=============================================
+*/
 
 #search {
     display: block;
@@ -38,6 +47,12 @@ main {
     border-color: #989898;
     transition: 0.2s ease-in-out;
 }
+
+/*
+=============================================
+        Searching button style
+=============================================
+*/
 
 #button-search {
     display: block;

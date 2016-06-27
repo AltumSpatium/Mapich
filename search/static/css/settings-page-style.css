@@ -1,24 +1,60 @@
-/* Style of site's main part */
-
-@media screen and (max-height: 1600px) {
-    main {
-        height: 1428px;
-    }
-}
-
-@media screen and (max-height: 1080px) {
-    main {
-        height: 884px;
-    }
-}
-
-@media screen and (max-height: 768px) {
-    main {
-        height: 572px;
-    }
-}
+/*
+=============================================
+        Page's main part style
+=============================================
+*/
 
 main {
-    background: linear-gradient(to bottom, #3288ed, #78c6ff);
     padding-top: 60px;
+}
+
+/*
+=============================================
+        Setting block style
+=============================================
+*/
+
+.setting {
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.setting p {
+    display: inline-block;
+    margin-right: 10px;
+    color: #ffffff;
+    font-family: 'Raleway', serif;
+    font-size: 20px;
+}
+
+.setting input {
+    width: 25px;
+    font-size: 20px;
+    text-align: center;
+}
+
+/*
+=============================================
+        Saving button style
+=============================================
+*/
+
+.btn-save {
+    display: block;
+    margin-top: 14px;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+    font-family: 'Raleway', serif;
+    background: #1d74db;
+    border: 1px solid;
+    border-color: #1d74db;
+    color: rgba(255, 255, 255, 0.59);
+}
+
+.btn-save:hover {
+    background: #1f6cc7;
+    border-color: #1f6cc7;
+    color: rgb(255, 255, 255);
+    transition: 0.2s ease-in-out;
 }

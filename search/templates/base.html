@@ -11,26 +11,26 @@
 		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 	</head>
 	<body>
-		<header>
-			<!-- Navigation panel -->
-			<nav class="navigation">
-				<ul>
-					<li><a href="base.html">Search</a></li>
-					<li><a href="urls.html">Urls</a></li>
+        <header>
+		    <!-- Navigation panel -->
+    		<nav class="navigation">
+	            <ul>
+		    		<li><a href="base.html">Search</a></li>
+			    	<li><a href="urls.html">Urls</a></li>
 					<li><a href="settings.html">Settings</a></li>
-					<li><a href="index.html">Add to index</a></li>
-				</ul>
-			</nav>
-		</header>
-		<main>
+				    <li><a href="index.html">Add to index</a></li>
+                </ul>
+	        </nav>
+        </header>
+	    <main>
 		    <div class="logo">
                 <a href="base.html">
                     <img width="442" height="235" src="{% static 'images/mapich.png' %}" alt="logo">
                 </a>
-			</div>
+	    	</div>
             <input id="search" type="text" autofocus>
-			<input id="button-search" type="button" value="Search on Mapich" onclick="return search(event)">
-		</main>
+		   <input id="button-search" type="button" value="Search on Mapich" onclick="return search(event)">
+    	</main>
 		<script type="text/javascript">
 			function search(e) {
 				var query = document.getElementById("search").value;

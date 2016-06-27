@@ -5,8 +5,8 @@
 		<title>Settings - Mapich</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/reset.css' %}">
-		<link rel="stylesheet" href="{% static 'css/settings-page-style.css' %}">
 		<link rel="stylesheet" href="{% static 'css/header-style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/settings-page-style.css' %}">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 	</head>
@@ -23,6 +23,17 @@
 			</nav>
 		</header>
 		<main>
+            <div class="setting">
+		        <p>Crawling depth: </p><input id="depth" type="text" maxlength="2" value="{{ depth }}">
+            </div>
+            <input class="setting btn-save" type="button" value="Save" onclick="return save(event)">
 		</main>
+		<script type="text/javascript">
+            function save(e) {
+                var depth = "depth:" + document.getElementById("depth").value;
+                var settings = "" + depth;
+                window.location = "http://127.0.0.1:8000/settings.html?settings=" + settings;
+            }
+        </script>
 	</body>
 </html>
