@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>{{ query }} - Search on Mapich</title>
+		<title>{{ cut_query }} - Search on Mapich</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{% static 'css/reset.css' %}">
 		<link rel="stylesheet" href="{% static 'css/header-style.css' %}">
@@ -29,8 +29,8 @@
                         <img width="110" height="58" src="{% static 'images/mapich.png' %}" alt="logo">
                     </a>
                 </div>
-                <input id="search" type="text" value="{{ full_query }}">
-		    	<input id="button-search" type="button" value="Search" onclick="return search(event)">
+                <input id="search" type="text" value="{{ full_query }}" onkeypress="return searchpress(event)">
+		    	<input id="button-search" type="button" value="Search" onclick="return searchclick(event)">
             </div>
     		{% for result in results %}
 	    	    <div class="search-result">
@@ -42,10 +42,16 @@
             {% endfor %}
        </main>
        <script type="text/javascript">
-			function search(e) {
+			function searchclick(e) {
 				var query = document.getElementById("search").value;
 				window.location = "http://127.0.0.1:8000/results.html?request=" + query;
-			}
+			};
+			function searchpress(e) {
+				if (e.keyCode == 13) {
+					var query = document.getElementById("search").value;
+					window.location = "http://127.0.0.1:8000/results.html?request=" + query;
+				}
+			};
 		</script>
 		
 	</body>

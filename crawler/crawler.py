@@ -59,7 +59,6 @@ class Crawler:
                 if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):
                     links.append(new_link)
                     self.visited.add(new_link)
-
             except Exception as e:
                 print e
                 continue
@@ -79,13 +78,9 @@ class Crawler:
             current_links = []
             for link in self.depth_links[current_depth]:
                 current_site = self.get_site(link)
-                if not current_site:
-                    continue
-                if not current_site.links:
-                    print current_site.links
+                if not current_site or not current_site.links:
                     continue
                 current_links.extend(current_site.links)
-
                 self.index[current_site.name] = current_site.index()
                 self.titles[current_site.name] = current_site.title
                 # time.sleep(1)
