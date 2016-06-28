@@ -46,15 +46,23 @@ class Crawler:
 
     def get_site(self, link):
         links = []
-        start_page = requests.get(link)
+        try:
+            start_page = requests.get(link)
+        except:
+            return None
         soup = BeautifulSoup(start_page.text, 'lxml')
         text = filter(visible, soup.findAll(text=True))
         parser = self.parsing_robots(link)
         for tag in soup.find_all('a', href=True):
             new_link = urlparse.urljoin(link, tag['href'])
-            if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):
-                links.append(new_link)
-                self.visited.add(new_link)
+            try:
+                if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):
+                    links.append(new_link)
+                    self.visited.add(new_link)
+
+            except Exception as e:
+                print e
+                continue
         try:
             title = soup.title.string
         except:
@@ -71,7 +79,13 @@ class Crawler:
             current_links = []
             for link in self.depth_links[current_depth]:
                 current_site = self.get_site(link)
+                if not current_site:
+                    continue
+                if not current_site.links:
+                    print current_site.links
+                    continue
                 current_links.extend(current_site.links)
+
                 self.index[current_site.name] = current_site.index()
                 self.titles[current_site.name] = current_site.title
                 # time.sleep(1)
