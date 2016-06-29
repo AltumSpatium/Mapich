@@ -72,3 +72,18 @@ main {
     color: rgb(255, 255, 255);
     transition: 0.2s ease-in-out;
 }
+
+/*
+=============================================
+        Time displaying paragraph style
+=============================================
+*/
+
+#time {
+    clear: left;
+    font-size: 18px;
+    font-family: 'Raleway', serif;
+    padding-top: 30px;
+    margin-left: 20px;
+    color: #fff;
+}

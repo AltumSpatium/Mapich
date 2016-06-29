@@ -26,6 +26,12 @@
 			<p id="par">Enter url:</p>
             <input id="index" type="text" autofocus>
 			<input id="button-index" type="button" value="Add" onclick="return index(event)">
+			{% if time %}
+				<p id="time">Done! Indexed in {{ time }} seconds.</p>
+				<!--<script type="text/javascript">
+					alert("Indexed in " + {{ time }} + " seconds");
+					</script>-->
+			{% endif %}
 		</main>
 		<script type="text/javascript">
 			function index(e) {

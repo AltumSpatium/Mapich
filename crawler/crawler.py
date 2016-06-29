@@ -1,12 +1,12 @@
 import requests
 import re
-from bs4 import BeautifulSoup
 import time
 import urlparse
-from nltk.stem.porter import PorterStemmer
-from nltk.corpus import stopwords
 import robotparser
 import database as db
+from bs4 import BeautifulSoup
+from nltk.stem.porter import PorterStemmer
+from nltk.corpus import stopwords
 
 cached_stopwords = set(stopwords.words('english'))
 
@@ -14,15 +14,17 @@ cached_stopwords = set(stopwords.words('english'))
 def visible(element):
     if element == '\n' or element == ' ':
         return False
-    if element.parent.name in ['style', 'script', '[document]', 'head', 'title']:
+    if element.parent.name in ['style', 'script',
+                               '[document]', 'head', 'title']:
         return False
-        # need to write str(element), but there are some problems with encoding
+        # Need to write str(element), but there are some problems with encoding
     elif re.match('<!--.*-->', element, re.DOTALL):
         return False
     return True
 
 
 class Crawler:
+
     def __init__(self, starting_url, depth):
         self.starting_url = starting_url
         self.depth = depth
@@ -56,11 +58,13 @@ class Crawler:
         for tag in soup.find_all('a', href=True):
             new_link = urlparse.urljoin(link, tag['href'])
             try:
-                if new_link not in self.visited and parser.can_fetch('*', new_link) and not db.check_visited(new_link):
+                if new_link not in self.visited\
+                        and parser.can_fetch('*', new_link)\
+                        and not db.check_visited(new_link):
                     links.append(new_link)
                     self.visited.add(new_link)
             except Exception as e:
-                print e
+                print "Exception", e
                 continue
         try:
             title = soup.title.string
@@ -69,25 +73,41 @@ class Crawler:
         return Site(link, text, links, title)
 
     def crawl(self):
+        print "Start crawling"
         site = self.get_site(self.starting_url)
+        if not site:
+            print "Error while getting site ", self.starting_url
+            return
+        print "Starting site,", self.starting_url, "downloaded"
         if not db.check_visited(site.name):
             self.index[site.name] = site.index()
         self.depth_links.append(site.links)
         self.titles[site.name] = site.title
+        print "Site's links added"
         for current_depth in xrange(self.depth):
             current_links = []
+            print "On depth:", current_depth
+            print "Links amount:", len(self.depth_links[current_depth])
             for link in self.depth_links[current_depth]:
                 current_site = self.get_site(link)
                 if not current_site or not current_site.links:
                     continue
+                print "Site", current_site.name, "downloaded"
                 current_links.extend(current_site.links)
                 self.index[current_site.name] = current_site.index()
                 self.titles[current_site.name] = current_site.title
+                print "To the next link"
+
                 # time.sleep(1)
             self.depth_links.append(current_links)
+            print "Current links added"
+        print "Index filled"
         if self.index:
             db.add_inverted_index(self.invert_index(self.index))
+            print "Inverted index added"
             db.add_index(self.index, self.titles)
+            print "Index added"
+        print "Done"
 
     def invert_index(self, index):
         inverted_index = {}
@@ -102,10 +122,12 @@ class Crawler:
                             site_name] = index[site_name][word]
                 else:
                     inverted_index[word] = {site_name: index[site_name][word]}
+        print "Primal index inverted"
         return inverted_index
 
 
 class Site(object):
+
     """docstring for Site"""
 
     def __init__(self, name, text, links, title):
@@ -136,4 +158,3 @@ class Site(object):
             except:
                 word_index[word] = [index]
         return word_index
-        

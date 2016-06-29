@@ -1,7 +1,7 @@
 from django.shortcuts import render, render_to_response
 from models import SearchResult
 from crawler import query as q, database, crawler
-import json
+import json, time
 
 
 def base(request):
@@ -52,10 +52,13 @@ def settings(request):
 
 
 def index(request):
+    t = None
     indexed_url = request.GET.get('request', None)
     if indexed_url:
+        ts = time.time()
         with open('search/static/settings/settings.json', 'r') as f:
             depth = int(json.loads(f.read()).get("depth"))
         c = crawler.Crawler(indexed_url, depth)
         c.crawl()
-    return render(request, 'index.html', {})
+        t = time.time() - ts
+    return render(request, 'index.html', {'time': t})

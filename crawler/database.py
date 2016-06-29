@@ -4,78 +4,26 @@ import search
 from search.models import Index, InvertedIndex
 
 
-# def add_index(index, titles):
-#     con = lite.connect('index.db')
-#     with con:
-#         cur = con.cursor()
-#         cur.execute(
-#             "CREATE TABLE IF NOT EXISTS Indexes(Url TEXT, Positions TEXT, Title Text)")
-#         for url in index.keys():
-#             cur.execute(
-#                 "INSERT INTO Indexes VALUES(?,?,?)", (url, str(index[url]), titles[url]))
-
-
-# def check_visited(url):
-#     con = lite.connect('index.db')
-#     with con:
-#         cur = con.cursor()
-#         cur.execute(
-#             "CREATE TABLE IF NOT EXISTS Indexes(Url TEXT, Positions TEXT, Title Text)")
-#         cur.execute(
-#             "SELECT rowid FROM Indexes WHERE url = '{}'".format(url))
-#         return bool(cur.fetchone())
-
-
-# def get_urls():
-#     con = lite.connect('index.db')
-#     with con:
-#         cur = con.cursor()
-#         cur.execute(
-#             "SELECT Url, Title FROM Indexes")
-#         return cur.fetchall()
-
-
-# def add_inverted_index(inverted_index):
-#     print "INVERTED_INDEX: ", inverted_index
-#     con = lite.connect('inverted_index.db')
-#     with con:
-#         cur = con.cursor()
-#         for word in inverted_index.keys():
-#             word_to_add = '_' + word
-#             l = []
-#             cur.execute(
-#                 "CREATE TABLE IF NOT EXISTS {}(Url TEXT, Positions TEXT)".format(word_to_add))
-#             for url, pos in inverted_index[word].items():
-#                 l.append([url, str(pos)])
-#             cur.executemany(
-#                 "INSERT INTO {} VALUES(?, ?)".format(word_to_add), l)
-
-
-# def get_word_data(word):
-#     con = lite.connect('inverted_index.db')
-#     with con:
-#         word_to_get = '_' + word
-#         cur = con.cursor()
-#         try:
-#             cur.execute("SELECT * FROM {}".format(word_to_get))
-#             res = [(data[0], eval(data[1])) for data in cur.fetchall()]
-#             return res
-#         except:
-#             return []
-
-
 def add_index(index, titles):
+    print "Addition to index in db started"
     for url in index.keys():
+        print "URL:", url
         index_object = Index()
         index_object.url = url
         index_object.positions = str(index[url])
         index_object.title = titles[url]
         index_object.save()
+        print "Another element added"
 
 
 def check_visited(url):
-    visited = Index.objects.all()
-    return bool(url in visited)
+    print "Checking for visited:"
+    visited = bool(Index.objects.filter(url=url))
+    if visited:
+        print "VISITED"
+    if not visited:
+        print "NOT VISITED"
+    return visited
 
 
 def get_urls():
@@ -83,17 +31,22 @@ def get_urls():
 
 
 def add_inverted_index(inverted_index):
+    print "Addition to inverted index in db started"
     for word in inverted_index.keys():
         word_to_add = '_' + word
+        print "Word to add:", word_to_add
         l = []
         inv_index_object = InvertedIndex()
+        print "Object done"
         for url, pos in inverted_index[word].items():
             l.append([url, str(pos)])
+        print "Array l filled"
         for elem in l:
             inv_index_object.word = word_to_add
             inv_index_object.url = elem[0]
             inv_index_object.position = elem[1]
             inv_index_object.save()
+            print "Another element added"
 
 
 def get_word_data(word):
